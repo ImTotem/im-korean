@@ -21,8 +21,8 @@ quick-rules로 대체할 수 없는 이유가 이것이다.
 S1급 패턴엔 시그니처 예문 1개를 덧붙인다(경계 사례 ID 오판 방지).
 
 CLI:
-    python3 scripts/build_diagnosis_rules.py            # 생성
-    python3 scripts/build_diagnosis_rules.py --check    # 최신 여부만 검사(CI용)
+    python3 tools/build_diagnosis_rules.py            # 생성
+    python3 tools/build_diagnosis_rules.py --check    # 최신 여부만 검사(CI용)
 """
 
 from __future__ import annotations
@@ -134,7 +134,7 @@ def render(patterns: list[dict], details: dict[str, dict[str, str | None]]) -> s
     out: list[str] = [
         "# 진단 전용 슬림 인덱스 (diagnosis-rules)",
         "",
-        "> **자동 생성 — 직접 편집 금지.** `scripts/build_diagnosis_rules.py`가",
+        "> **자동 생성 — 직접 편집 금지.** `tools/build_diagnosis_rules.py`가",
         "> SSOT `ai-tell-taxonomy.md`에서 생성한다. 진단 콜 전용 — 예문 전수·",
         f"> 처방·학술 인용·버전주석은 SSOT 참조. **{len(patterns)}패턴 전수** 수록",
         "> (문서 레벨 quick:false 패턴 포함 — quick-rules로 대체 불가).",
@@ -249,7 +249,7 @@ def main(argv: list[str] | None = None) -> int:
         if existing.rstrip() != rendered.rstrip():
             print(
                 "error: diagnosis-rules.md 가 taxonomy와 어긋난다. "
-                "`python3 scripts/build_diagnosis_rules.py` 로 재생성하라.",
+                "`python3 tools/build_diagnosis_rules.py` 로 재생성하라.",
                 file=sys.stderr,
             )
             return 1
@@ -270,7 +270,13 @@ def main(argv: list[str] | None = None) -> int:
 import os as _os  # noqa: E402
 import sys as _sys  # noqa: E402
 
-_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+_sys.path.insert(
+    0,
+    _os.path.join(
+        _os.path.dirname(_os.path.abspath(__file__)),
+        "..", "skills", "humanize-korean", "scripts",
+    ),
+)
 import console as _console  # noqa: E402
 
 if __name__ == "__main__":

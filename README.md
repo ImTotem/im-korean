@@ -144,10 +144,10 @@ Claude Code 설정의 출력 스타일 목록에서 `fluent-korean`을 고릅니
 원본을 고친 뒤 저장소 루트에서 아래 명령을 돌립니다.
 
 ```bash
-python scripts/build_quick_rules.py
-python scripts/build_diagnosis_rules.py
-python scripts/build_quick_rules.py --check
-python scripts/build_diagnosis_rules.py --check
+python tools/build_quick_rules.py
+python tools/build_diagnosis_rules.py
+python tools/build_quick_rules.py --check
+python tools/build_diagnosis_rules.py --check
 ```
 
 ## 라이선스

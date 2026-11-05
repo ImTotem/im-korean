@@ -19,8 +19,8 @@ ID 드리프트가 3건 생겼다(D-3·G-1/G-2·J-3가 서로 다른 패턴을 �
     - _quick: false · …_        (strict 전용 — 생성물에서 제외)
 
 CLI:
-    python3 scripts/build_quick_rules.py            # 생성
-    python3 scripts/build_quick_rules.py --check    # 최신 여부 + fast 토큰 예산 상한 검사(쓰지 않음)
+    python3 tools/build_quick_rules.py            # 생성
+    python3 tools/build_quick_rules.py --check    # 최신 여부 + fast 토큰 예산 상한 검사(쓰지 않음)
 """
 
 from __future__ import annotations
@@ -238,7 +238,7 @@ def main(argv: list[str] | None = None) -> int:
         if existing.rstrip() != rendered.rstrip():
             print(
                 "error: quick-rules.md 가 taxonomy와 어긋난다. "
-                "`python3 scripts/build_quick_rules.py` 로 재생성하라.",
+                "`python3 tools/build_quick_rules.py` 로 재생성하라.",
                 file=sys.stderr,
             )
             return 1
@@ -281,7 +281,13 @@ def main(argv: list[str] | None = None) -> int:
 import os as _os  # noqa: E402
 import sys as _sys  # noqa: E402
 
-_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+_sys.path.insert(
+    0,
+    _os.path.join(
+        _os.path.dirname(_os.path.abspath(__file__)),
+        "..", "skills", "humanize-korean", "scripts",
+    ),
+)
 import console as _console  # noqa: E402
 
 if __name__ == "__main__":

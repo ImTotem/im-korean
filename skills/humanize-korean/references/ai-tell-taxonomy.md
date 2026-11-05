@@ -20,7 +20,7 @@ LLM(ChatGPT·Claude·Gemini 등)이 생성한 한글 글에서 반복적으로 �
 
 ## quick 빌드 메타 (fast 룰북 생성 계약)
 
-각 패턴 항목 말미의 이탤릭 한 줄(`_quick: …_`)은 `scripts/build_quick_rules.py`가 fast 경로 슬림 룰북 `quick-rules.md`를 생성할 때 읽는 빌드 메타다. quick-rules.md는 사람이 직접 수정하지 않는다 — 이 파일이 SSOT.
+각 패턴 항목 말미의 이탤릭 한 줄(`_quick: …_`)은 `tools/build_quick_rules.py`가 fast 경로 슬림 룰북 `quick-rules.md`를 생성할 때 읽는 빌드 메타다. quick-rules.md는 사람이 직접 수정하지 않는다 — 이 파일이 SSOT.
 
 - `quick: true` = fast 룰북 포함. 표층 신호만으로 탐지 가능한 S1·S2 패턴에 한정.
 - `quick: false` = strict 전용. 문서 레벨 판단(리듬·구조·분포·POS 분석)이 필요하거나 hold 상태인 패턴.
@@ -971,7 +971,7 @@ J. 시각 장식 남용 — J-1~J-5
   - `C-3`·`C-10`에 학술·보고서 절 제목 불가침 예외 — 학술논문 장 제목("Ⅱ.")이 본문에 흡수되고 각주 위치가 변조된 실사고(18.6K자 논문)의 직접 원인 차단. 헤딩 처방은 칼럼·에세이의 도식·장식 헤딩에만 적용
   - D 카테고리 서문에 **역방향 삽입 금지** 명문화 — 윤문기가 원문에 없던 D 계열 상투구("기록적인 성과를 거두었다" 류)를 주입해 살아있는 구어를 죽인 실사고(★1 평가) 차단. playbook의 "비유·수사 추가 금지"가 못 잡던 상투구 주입의 taxonomy 측 근거
   - `J-3`·`F-1`에 원문 구어 보존 예외 — 원문에 이미 있던 대시·감탄·반문·구어 강조는 사람 글의 증거이므로 보존
-  - **quick 빌드 메타 도입**: 전 71개 패턴(A-17 hold 포함)에 `_quick:` 이탤릭 메타 부착 — true 49 / false 22. quick-rules.md는 이후 `scripts/build_quick_rules.py`가 이 파일에서 생성 — 손 동기화로 생긴 ID 드리프트(구 quick-rules의 D-3·G-1/G-2·J-3가 본진과 다른 패턴을 지칭) 원천 차단. 선별 기준은 「quick 빌드 메타」 절 참조
+  - **quick 빌드 메타 도입**: 전 71개 패턴(A-17 hold 포함)에 `_quick:` 이탤릭 메타 부착 — true 49 / false 22. quick-rules.md는 이후 `tools/build_quick_rules.py`가 이 파일에서 생성 — 손 동기화로 생긴 ID 드리프트(구 quick-rules의 D-3·G-1/G-2·J-3가 본진과 다른 패턴을 지칭) 원천 차단. 선별 기준은 「quick 빌드 메타」 절 참조
 
 - **v2.0** (2026-05-07): **본진 신규 5건 + 본진 보강 4건 + post-editese metric-only 트랙 도입** — 한국어 번역투 종합 연구보고서(540줄, 4기 1994~ AI 융합 계보) + 보고서 §III.3 8유형 통합 + Toral 2019 post-editese:
   - **본진 신규 4건**: `A-16` 영어 대명사 직역 [S1, 김도훈 2009 + Cho et al. 2019 ACL] · `A-18` 관계절 좌향 수식 [S2, 박옥수 2018 + 김채은 2021] · `A-19` 이중 조사 결합 [S2, 김정우 2007 + 김순영 2012, caveat C5로 단순 ~의 명시 제외] · `E-7` 청자 경어법 일관성 손실 [S2 estimated, 김혜영 2019, caveat C1로 estimated 플래그]

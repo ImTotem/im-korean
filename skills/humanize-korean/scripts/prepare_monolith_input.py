@@ -18,7 +18,7 @@ Inputs:
   --chunk           장문 청킹 모드. 01_input.txt 를 손실 없이 청크로 나눠
                     청크별 01_chunk_{NN}_input_with_metrics.txt 와
                     chunk_manifest.json 을 만든다. 경계 결정은 100% 코드
-                    (LLM 개입 0). 재조립은 scripts/reassemble_chunks.py.
+                    (LLM 개입 0). 재조립은 reassemble_chunks.py.
 
 Outputs (in {run_dir}):
   00_metrics.json             — full compute_all() output (or error stub)
@@ -45,15 +45,9 @@ import traceback
 from datetime import date
 from pathlib import Path
 
-# Resolve project layout. This file lives at:
-#   {project_root}/scripts/prepare_monolith_input.py
-# metrics.py is at:
-#   {project_root}/skills/humanize-korean/references/metrics.py
+# This file lives at {skill_dir}/scripts/; metrics.py is at {skill_dir}/references/.
 HERE = Path(__file__).resolve().parent
-PROJECT_ROOT = HERE.parent
-_PLUGIN_REFS = PROJECT_ROOT / "skills" / "humanize-korean" / "references"
-_CODEX_REFS = PROJECT_ROOT / "references"
-METRICS_DIR = _PLUGIN_REFS if _PLUGIN_REFS.is_dir() else _CODEX_REFS
+METRICS_DIR = HERE.parent / "references"
 
 # Make metrics.py importable without polluting global state.
 sys.path.insert(0, str(METRICS_DIR))
@@ -105,10 +99,8 @@ def _resolve_run_dir(
 ) -> Path:
     """상대 경로는 **cwd** 기준으로 푼다.
 
-    이전에는 PROJECT_ROOT(설치 저장소 루트) 기준이었다. SKILL.md 는 "모든 경로는
-    cwd 기준"이라고 지시하는데 스크립트는 저장소 루트에서 찾으니, 심링크로 설치해
-    사용자 작업 디렉터리에서 스킬을 부르는 정상 흐름이 첫 실행부터 실패했다.
-    (저장소 루트에서 돌릴 때는 cwd == PROJECT_ROOT 라 동작이 같다.)
+    스크립트는 스킬 폴더 안에 있고 사용자는 다른 작업 디렉터리에서 부른다.
+    그래서 run-dir 은 스킬 폴더가 아니라 cwd 기준이어야 한다.
 
     빈 디렉터리도 남기지 않는다 — 예전에는 존재 확인 전에 mkdir 을 해서, 실패할
     때마다 설치 위치에 빈 `_workspace/{run_id}/` 가 쌓였다. 새로 만드는 경우
@@ -143,7 +135,7 @@ def _resolve_run_dir(
 # 50% 초과 강제 중단에 걸린다. 여기서 한 번 정규화해 두면 게이트·diff·글자수가
 # 전부 같은 기준을 쓰게 된다.
 #
-# 이 처리는 AI 워터마크와 무관하다 (scripts/sanitize_text.py 상단 주석 참조).
+# 이 처리는 AI 워터마크와 무관하다 (sanitize_text.py 상단 주석 참조).
 
 try:
     import sanitize_text as _sanitize_mod
@@ -944,7 +936,7 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="텍스트 위생 처리를 끈다. 기본은 켜짐 — 제로폭·특수공백·NFD 분해 한글 등 "
         "보이지 않는 오염을 01_input.txt 에 반영해 이후 게이트·diff 기준을 통일한다. "
-        "(AI 워터마크와 무관 — scripts/sanitize_text.py 참조)",
+        "(AI 워터마크와 무관 — sanitize_text.py 참조)",
     )
     args = p.parse_args(argv)
 

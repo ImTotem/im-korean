@@ -18,10 +18,10 @@ Exit code:
     3 — 실행 오류 (입력 파일 없음 등). 게이트 판정 불가.
 
 CLI:
-    python3 scripts/verify_change_rate.py \
+    python3 skills/humanize-korean/scripts/verify_change_rate.py \
         --before _workspace/{run_id}/01_input.txt \
         --after  _workspace/{run_id}/final.md
-    python3 scripts/verify_change_rate.py --before a.txt --after b.md --ignore-markup
+    python3 skills/humanize-korean/scripts/verify_change_rate.py --before a.txt --after b.md --ignore-markup
 """
 
 from __future__ import annotations
@@ -32,12 +32,7 @@ import re
 import sys
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-_REFS = os.path.join(
-    _HERE, "..", "skills", "humanize-korean", "references"
-)
-_REFS = os.path.abspath(_REFS)
-if not os.path.isdir(_REFS):  # 복사 설치·Codex 번들: scripts/ 옆 references/
-    _REFS = os.path.abspath(os.path.join(_HERE, "..", "references"))
+_REFS = os.path.abspath(os.path.join(_HERE, "..", "references"))
 if _REFS not in sys.path:
     sys.path.insert(0, _REFS)
 

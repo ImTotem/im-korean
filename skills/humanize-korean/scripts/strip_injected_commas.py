@@ -14,7 +14,7 @@ light 경로 실측(오염쌍 28편)에서 윤문 **후** 연결어미 쉼표가
 - 따옴표(" " ' ' 「」 『』) 안은 건드리지 않는다.
 
 사용:
-    python3 scripts/strip_injected_commas.py --before a.txt --after b.md --out b.md --json
+    python3 skills/humanize-korean/scripts/strip_injected_commas.py --before a.txt --after b.md --out b.md --json
 
 `--out` 없으면 결과를 stdout으로 낸다. 종료 코드는 항상 0 — 게이트가 아니다.
 """

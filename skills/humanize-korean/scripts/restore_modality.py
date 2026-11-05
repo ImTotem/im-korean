@@ -28,8 +28,8 @@
 
 ## 사용
 
-    python3 scripts/restore_modality.py --before 01_input.txt --after final.md
-    python3 scripts/restore_modality.py --before a.txt --after b.md --out b.md --json
+    python3 skills/humanize-korean/scripts/restore_modality.py --before 01_input.txt --after final.md
+    python3 skills/humanize-korean/scripts/restore_modality.py --before a.txt --after b.md --out b.md --json
 
 `--out` 없으면 복원본을 stdout으로 낸다. 종료 코드는 항상 0 — 게이트가 아니다.
 """
@@ -43,10 +43,8 @@ import sys
 from collections import Counter
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-_ROOT = os.path.abspath(os.path.join(_HERE, ".."))
-_PLUGIN_REFS = os.path.join(_ROOT, "skills", "humanize-korean", "references")
+_REFS = os.path.abspath(os.path.join(_HERE, "..", "references"))
 # 복사 설치(install.sh --copy)·Codex 번들은 scripts/ 옆에 references/ 가 있다.
-_REFS = _PLUGIN_REFS if os.path.isdir(_PLUGIN_REFS) else os.path.join(_ROOT, "references")
 for _p in (_REFS, _HERE):
     if _p not in sys.path:
         sys.path.insert(0, _p)

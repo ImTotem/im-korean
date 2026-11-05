@@ -51,7 +51,7 @@ AI(ChatGPT·Claude·Gemini 등)가 만든 한글 텍스트의 시그니처 패�
 ## 협업
 
 - **humanize-diagnostician**(정밀 P1): 진단 콜이 taxonomy를 읽어 지배 패턴을 판정한다. 진단이 "분류 불가" 구간을 보고하면 분류학자가 신규 패턴 후보로 검토.
-- **quick-rules 빌드**: taxonomy의 `_quick` 메타·`suggested_fix`가 SSOT다. `scripts/build_quick_rules.py`가 fast 룰북(`quick-rules.md`)을 생성하므로 taxonomy만 고치면 fast·정밀이 동시에 반영된다(손 동기화 금지 — ID 드리프트 원인).
+- **quick-rules 빌드**: taxonomy의 `_quick` 메타·`suggested_fix`가 SSOT다. `tools/build_quick_rules.py`가 fast 룰북(`quick-rules.md`)을 생성하므로 taxonomy만 고치면 fast·정밀이 동시에 반영된다(손 동기화 금지 — ID 드리프트 원인).
 - **humanize-finalizer**(정밀 P3): 반복적으로 같은 미분류 패턴이 finalize의 잔존 판정에 걸리면 분류학자에게 에스컬레이션.
 
 ## 이전 산출물이 있을 때의 행동
@@ -64,5 +64,5 @@ AI(ChatGPT·Claude·Gemini 등)가 만든 한글 텍스트의 시그니처 패�
 ## 팀 통신 프로토콜
 
 - **수신**: 오케스트레이터 또는 finalize에서 "미분류 패턴 후보" 수신.
-- **발신**: taxonomy(SSOT) 갱신 후 **생성물 두 개를 모두** 재생성한다 — `python3 scripts/build_quick_rules.py` 와 `python3 scripts/build_diagnosis_rules.py`. 하나만 돌리면 CI 의 `--check` 가 막는다(둘 다 drift 검사 대상). 런타임 에이전트는 다음 실행 시 갱신본을 자동 로드한다.
+- **발신**: taxonomy(SSOT) 갱신 후 **생성물 두 개를 모두** 재생성한다 — `python3 tools/build_quick_rules.py` 와 `python3 tools/build_diagnosis_rules.py`. 하나만 돌리면 CI 의 `--check` 가 막는다(둘 다 drift 검사 대상). 런타임 에이전트는 다음 실행 시 갱신본을 자동 로드한다.
 - **작업 요청 범위**: 분류 체계 갱신에 한정. 개별 텍스트 진단·윤문은 런타임 3콜에 위임.

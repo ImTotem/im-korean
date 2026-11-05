@@ -1,6 +1,6 @@
 # 진단 전용 슬림 인덱스 (diagnosis-rules)
 
-> **자동 생성 — 직접 편집 금지.** `scripts/build_diagnosis_rules.py`가
+> **자동 생성 — 직접 편집 금지.** `tools/build_diagnosis_rules.py`가
 > SSOT `ai-tell-taxonomy.md`에서 생성한다. 진단 콜 전용 — 예문 전수·
 > 처방·학술 인용·버전주석은 SSOT 참조. **93패턴 전수** 수록
 > (문서 레벨 quick:false 패턴 포함 — quick-rules로 대체 불가).
