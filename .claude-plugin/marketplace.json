@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "한국어 글쓰기 스킬 묶음 im-korean을 배포하는 마켓플레이스",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "pluginRoot": "."
   },
   "plugins": [
@@ -13,7 +13,7 @@
       "name": "im-korean",
       "source": "./",
       "description": "AI 티 윤문, 맞춤법 검사, 문체 통일 검사, fluent-korean 출력 스타일을 한 번에 설치합니다.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "keywords": ["korean", "한국어", "humanize", "윤문", "맞춤법"]
     }
   ]
