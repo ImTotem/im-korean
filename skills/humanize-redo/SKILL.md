@@ -13,7 +13,7 @@ cwd 기준 가장 최근 `_workspace/{run_id}/`를 찾아 `humanize-korean` 스�
 $ARGUMENTS
 
 ## 동작
-1. `Glob`으로 `_workspace/YYYY-MM-DD-*/final.md`(또는 `01_input.txt`)를 매칭해 최신 `run_id` 식별. 없으면 "이전 실행이 없습니다. `/humanize`로 시작하세요" 안내 후 종료.
+1. `_workspace/YYYY-MM-DD-*/final.md`(또는 `01_input.txt`)를 파일 찾기로 매칭해 최신 `run_id` 식별. 없으면 "이전 실행이 없습니다. `/humanize`로 시작하세요" 안내 후 종료.
 2. 사용자 지시 파싱:
    - **카테고리 지정**("번역투만", "관용구만", "이모지만") → 해당 카테고리 finding만 재윤문
    - **문단 지정**("이 문단만", "두 번째 문단만") → 해당 범위 finding만

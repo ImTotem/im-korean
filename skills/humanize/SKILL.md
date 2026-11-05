@@ -14,7 +14,7 @@ $ARGUMENTS
 
 ## 동작
 1. 인자가 비면: "윤문할 텍스트를 붙여넣어 주세요" 안내 후 종료.
-2. 인자가 파일 경로(.txt/.md)면 `Read`로 본문 로드.
+2. 인자가 파일 경로(.txt/.md)면 파일을 읽어 본문을 불러온다.
 3. 인자가 텍스트면 그대로 입력으로 사용.
 4. `humanize-korean` 스킬 SKILL.md 절차(Phase 0 → 결과 전달)를 따른다 — 경로는 **route_hint**(light|standard|heavy)가 정하고, `--strict` 시 heavy 고정.
 5. 결과 전달:

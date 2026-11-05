@@ -35,7 +35,7 @@ korean-grammar-checker, korean-style-guide, humanize-korean 순서로 실행하�
 
 다음 방법으로 텍스트를 받을 수 있습니다:
 - 사용자가 직접 제공한 텍스트
-- 파일 경로 (Read 도구 사용)
+- 파일 경로 (파일을 읽어 불러온다)
 - 대화 컨텍스트에 포함된 텍스트
 
 ### 2단계: 오류 검사

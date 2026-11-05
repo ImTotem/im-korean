@@ -77,7 +77,7 @@ def _next_run_dir(workspace: Path, session_tag: str | None = None) -> Path:
     ABORT 를 낸다. 윤문본 자체는 멀쩡하므로 원인을 찾기가 특히 어렵다.
 
     `session_tag` 를 주면 이름 뒤에 붙어 세션끼리 번호도 겹치지 않는다.
-    `YYYY-MM-DD-` 접두어는 그대로라 기존 Glob 패턴·정렬은 영향받지 않는다.
+    `YYYY-MM-DD-` 접두어는 그대로라 기존 정렬은 영향받지 않는다.
     """
     workspace.mkdir(parents=True, exist_ok=True)
     today = date.today().isoformat()
