@@ -59,14 +59,46 @@ Claude Code에서 아래 두 명령을 차례로 입력합니다.
 /plugin install im-korean@im-korean
 ```
 
-Codex는 `.claude-plugin`의 마켓플레이스 파일을 읽습니다. 터미널에서 아래 명령을 돌리면 스킬 6개가 실립니다.
+### Codex 앱(ChatGPT 데스크톱)과 Codex CLI에서 설치
+
+이 저장소에는 Codex용 마켓플레이스 파일 `.agents/plugins/marketplace.json`과 플러그인 파일 `.codex-plugin/plugin.json`이 있습니다.
+Python 없이 마켓플레이스로 설치합니다.
+
+Codex 앱에서는 개인 마켓플레이스 파일에 im-korean을 적습니다.
+
+1. 아래 파일을 엽니다. 파일이 없으면 새로 만듭니다.
+   - Windows: `C:\Users\<사용자 이름>\.agents\plugins\marketplace.json`
+   - macOS, Linux: `~/.agents/plugins/marketplace.json`
+2. 파일에 아래 내용을 넣고 저장합니다. 파일에 이미 다른 플러그인이 있으면 `plugins` 목록에 im-korean 항목만 더합니다.
+
+   ```json
+   {
+     "name": "personal",
+     "interface": { "displayName": "내 플러그인" },
+     "plugins": [
+       {
+         "name": "im-korean",
+         "source": { "source": "url", "url": "https://github.com/ImTotem/im-korean.git" },
+         "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+         "category": "Productivity"
+       }
+     ]
+   }
+   ```
+
+3. ChatGPT 데스크톱 앱을 껐다가 다시 켭니다.
+4. Codex의 Plugins 화면을 엽니다. 마켓플레이스 목록에서 "내 플러그인"을 고르고 im-korean을 설치합니다.
+
+Codex CLI에서는 아래 명령 한 줄로 마켓플레이스를 더합니다. 그다음 `codex`를 켜고 `/plugins`에서 im-korean을 설치합니다.
 
 ```bash
 codex plugin marketplace add ImTotem/im-korean
 ```
 
-- 이 명령은 아직 실제 Codex로 시험하지 못했습니다.
-- 플러그인으로는 하위 에이전트와 문체 지침이 실리지 않습니다. 둘은 아래 `install.py`로 넣습니다.
+- 두 방법 모두 아직 실제 Codex로 시험하지 못했습니다. 파일 형식은 Codex 소스와 OpenAI 플러그인 문서에 맞췄습니다.
+- 플러그인으로 설치하면 스킬 6개가 `im-korean:humanize-korean`처럼 플러그인 이름을 앞에 붙여 실립니다.
+- 플러그인으로는 하위 에이전트와 문체 지침이 실리지 않습니다. 하위 에이전트가 없으면 `humanize-korean`은 같은 단계를 한 대화 안에서 차례로 실행합니다. 둘을 따로 넣으려면 아래 `install.py`를 씁니다.
+- 회사 워크스페이스 관리자는 Admin > Plugins > Add > Import marketplace에 `https://github.com/ImTotem/im-korean`을 넣어 팀 전체에 줄 수 있습니다.
 
 OpenCode에는 플러그인 명령이 없습니다. 아래 `install.py`를 씁니다.
 

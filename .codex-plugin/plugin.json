@@ -1,0 +1,27 @@
+{
+  "name": "im-korean",
+  "version": "1.2.0",
+  "description": "한국어 글쓰기 스킬 묶음. AI 티 윤문(humanize-korean), 맞춤법 검사, 문체 통일 검사.",
+  "author": {
+    "name": "ImTotem",
+    "url": "https://github.com/ImTotem"
+  },
+  "homepage": "https://github.com/ImTotem/im-korean",
+  "repository": "https://github.com/ImTotem/im-korean",
+  "license": "MIT",
+  "keywords": ["korean", "한국어", "humanize", "윤문", "맞춤법", "style-guide"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "im-korean",
+    "shortDescription": "한국어 글의 AI 티 윤문, 맞춤법 검사, 문체 통일 검사",
+    "longDescription": "AI가 쓴 티가 나는 한국어 글을 사람 글처럼 고칩니다. 맞춤법, 띄어쓰기, 문장부호를 검사합니다. 한 문서 안의 용어, 날짜와 숫자 표기, 높임 등급이 고른지 봅니다.",
+    "developerName": "ImTotem",
+    "category": "Productivity",
+    "websiteURL": "https://github.com/ImTotem/im-korean",
+    "defaultPrompt": [
+      "이 글 AI 티 없애줘",
+      "이 글 맞춤법 검사해줘",
+      "이 문서 용어와 날짜 표기가 통일됐는지 봐줘"
+    ]
+  }
+}
