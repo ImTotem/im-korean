@@ -1,0 +1,13 @@
+{
+  "name": "im-korean",
+  "version": "1.0.0",
+  "description": "한국어 글쓰기 스킬 네 저장소를 합친 묶음. AI 티 윤문(humanize-korean), 맞춤법 검사, 문체 통일 검사, fluent-korean 출력 스타일.",
+  "author": {
+    "name": "ImTotem",
+    "url": "https://github.com/ImTotem"
+  },
+  "homepage": "https://github.com/ImTotem/im-korean",
+  "repository": "https://github.com/ImTotem/im-korean",
+  "license": "MIT",
+  "keywords": ["korean", "한국어", "humanize", "윤문", "맞춤법", "style-guide", "output-style"]
+}
