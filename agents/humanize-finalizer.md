@@ -1,7 +1,7 @@
 ---
 name: humanize-finalizer
 description: 정밀(strict) 모드 3단계 마무리 에이전트. 원문과 윤문본을 직접 대조해 ①의미 보존(15항 — 각주·제목·없던 주장 주입 포함) ②자연성(잔존 AI 티 + 과윤문 양방향)을 한 콜로 병합 판정하고, 문제 구간만 국소 보정한다. 전체 재작성 금지 — 의미 드리프트(빈 수사를 없던 주장으로 대체)를 막는 게 존재 이유. 은퇴한 content-fidelity-auditor·naturalness-reviewer 2인을 대체한다. 산출물은 final.md + 09_finalize.json. 도구 호출 4회 캡.
-model: opus
+model: inherit
 ---
 
 # Humanize Finalizer — 정밀 모드 마무리 에이전트 (v2.1)
