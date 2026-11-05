@@ -9,7 +9,7 @@
     python install.py --home DIR            # 홈 폴더를 바꾼다(시험용)
 
 설치한 경로는 ~/.im-korean-install.json 에 적는다. 다시 돌리면 그 경로만 덮어쓴다.
-목표 자리에 이 설치기가 넣지 않은 파일이 있으면 <경로>.bak-<시각> 으로 옮겨 둔다.
+목표 자리에 이 설치기가 넣지 않은 파일이 있으면 ~/.im-korean-backups/<시각>/ 아래로 옮겨 둔다.
 Python 3.8 이상, 표준 라이브러리만 쓴다.
 """
 
@@ -26,6 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 MANIFEST_NAME = ".im-korean-install.json"
+BACKUP_DIR = ".im-korean-backups"
 BLOCK_START = "<!-- im-korean:fluent-korean:start -->"
 BLOCK_END = "<!-- im-korean:fluent-korean:end -->"
 STYLE_NAME = "fluent-korean.md"
@@ -74,10 +75,11 @@ class Installer:
             if not self.dry_run:
                 remove_path(target)
             return
-        backup = backup_name(target, self.stamp)
+        backup = backup_name(target, self.home, self.stamp)
         self.say(f"백업: {target} -> {backup}")
         if not self.dry_run:
-            target.rename(backup)
+            backup.parent.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(target), str(backup))
 
     def copy_dir(self, source, target):
         if target in self.done:
@@ -193,12 +195,18 @@ def prune_empty_parent(target):
         parent.rmdir()
 
 
-def backup_name(target, stamp):
-    candidate = target.with_name(f"{target.name}.bak-{stamp}")
+def backup_name(target, home, stamp):
+    # 런타임은 스킬 폴더를 재귀로 훑는다. 백업을 그 안에 두면 같은 스킬이 두 번 읽힌다.
+    try:
+        relative = target.relative_to(home)
+    except ValueError:
+        relative = Path("_outside_home", *target.parts[1:])
+    root = home / BACKUP_DIR
+    candidate = root / stamp / relative
     counter = 1
     while candidate.exists():
         counter += 1
-        candidate = target.with_name(f"{target.name}.bak-{stamp}-{counter}")
+        candidate = root / f"{stamp}-{counter}" / relative
     return candidate
 
 
